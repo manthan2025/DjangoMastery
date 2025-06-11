@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        Django App
+        {% endblock  %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/main.js' %}" ></script>
+</head>
+<body>
+    <nav>
+    <div class="nav-content">
+        <div class="nav-left">
+            <a href="/">
+                <span role='img' aria-label='Home' title='Home'> 🏠</span>
+            </a> |
+            <a href="/about">
+                <span role='img' aria-label='About Us' title='About Us'>ℹ️</span>
+            </a> |
+            <a href="{% url "posts:list" %}">
+                <span role='img' aria-label='Posts' title='Posts'>📰</span>
+            </a> |
+            
+            {% if user.is_authenticated %}
+                <a href="{% url "posts:new-post" %}">
+                    <span role='img' aria-label='New post' title='New post'>📝</span>
+                </a> |
+                <form class="logout" action="{% url "users:logout" %}" method="post">
+                    {% csrf_token %}
+                    <button class="logout-button" aria-label='User Logout' title='Logout'>🚪</button>
+                </form>
+            {% else %}
+                <a href="{% url "users:register" %}">
+                    <span role='img' aria-label='Register' title='Register'>🪪</span>
+                </a> |
+                <a href="{% url "users:login" %}">
+                    <span role='img' aria-label='login' title='Login/Sign in'>🔐</span>
+                </a>
+            {% endif %}
+        </div>
+        {% if user.is_authenticated %}
+            <div class="nav-right">
+                <span class="welcome-message">Welcome, {{ user.username }}!</span>
+            </div>
+        {% endif %}
+    </div>
+</nav>
+    {% block content %}{% endblock content %}
+    
+</body>
+</html>
