@@ -44,7 +44,7 @@ section {
     display: flex;
     flex-flow: column;
     gap: 1.5rem;
-    padding: 0 2rem;
+    padding: 0 2rem 2rem 2rem; /* Added padding at the bottom */
 }
 
 h1, h2 {
@@ -201,4 +201,123 @@ article {
     margin: 2rem auto;
     max-width: 1000px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Comment and Reply Styles */
+.comment {
+    background-color: #1a1a1a;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 8px;
+    color: whitesmoke;
+    font-size: 1rem;
+}
+
+.comment p {
+    font-size: 1.1rem;
+    margin: 8px 0;
+}
+
+.reply-btn {
+    background-color: #44B78B;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.reply-btn:hover {
+    background-color: #3a9d76;
+}
+
+.replies {
+    margin-left: 40px;
+    border-left: 3px solid #44B78B;
+    padding-left: 20px;
+}
+
+.reply {
+    margin: 12px 0;
+    padding: 15px;
+    background-color: #2a2a2a;
+    border-radius: 6px;
+    color: whitesmoke;
+}
+
+.reply p {
+    font-size: 1rem;
+    margin: 6px 0;
+}
+
+.reply-form {
+    margin: 15px 0;
+    padding: 15px;
+    background-color: #2a2a2a;
+    border-radius: 6px;
+    color: whitesmoke;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1rem;
+    color: #81dbb8;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #44B78B;
+    border-radius: 4px;
+    background-color: #1a1a1a;
+    color: whitesmoke;
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.reply-date, .comment-date {
+    font-size: 0.85rem;
+    color: #81dbb8;
+    margin-top: 5px;
+}
+
+/* Add Comment Section */
+.add-comment-section {
+    margin-top: 30px;
+}
+
+.add-comment-section h3 {
+    font-size: 1rem;
+    color: #44B78B;
+    margin-bottom: 15px;
+}
+
+/* Submit buttons */
+button[type="submit"] {
+    background-color: #44B78B;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    margin-bottom: 2rem; /* Add spacing at the bottom */
+}
+
+button[type="submit"]:hover {
+    background-color: #3a9d76;
 }

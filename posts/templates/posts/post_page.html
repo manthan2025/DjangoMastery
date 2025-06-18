@@ -12,5 +12,75 @@
                 By {{ post.author }} | {{ post.date|date:"F j, Y" }}
             </div>
     </section>
+    <section>
+        <h2>Comments</h2>
+        {% for comment in post.comments.all %}
+            <div class="comment">
+                <p><strong>{{ comment.author }}</strong> says:</p>
+                <p>{{ comment.content }}</p>
+                <p class="comment-date">{{ comment.date|date:"F j, Y" }}</p>
+                
+                <!-- Reply Button -->
+                <button class="reply-btn" onclick="showReplyForm('reply-form-{{ comment.id }}')">Reply</button>
+                
+                <!-- Reply Form (Hidden by default) -->
+                <div id="reply-form-{{ comment.id }}" class="reply-form" style="display: none;">
+                    <form method="post" action="{% url 'posts:add_reply' post.slug comment.id %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="reply-author-{{ comment.id }}">Name:</label>
+                            <input type="text" id="reply-author-{{ comment.id }}" name="author" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reply-content-{{ comment.id }}">Reply:</label>
+                            <textarea id="reply-content-{{ comment.id }}" name="content" rows="2" required></textarea>
+                        </div>
+                        <button type="submit">Submit Reply</button>
+                    </form>
+                </div>
 
+                <!-- Display Replies -->
+                {% if comment.replies.all %}
+                    <div class="replies">
+                        {% for reply in comment.replies.all %}
+                            <div class="reply">
+                                <p><strong>{{ reply.author }}</strong> replied:</p>
+                                <p>{{ reply.content }}</p>
+                                <p class="reply-date">{{ reply.date|date:"F j, Y" }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>No comments yet.</p>
+        {% endfor %}
+
+        <!-- Main Comment Form -->
+        <h4>Add a Comment</h4>
+        <form method="post" action="{% url 'posts:add_comment' post.slug %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="author">Name:</label>
+                <input type="text" id="author" name="author" required>
+            </div>
+            <div class="form-group">
+                <label for="content">Comment:</label>
+                <textarea id="content" name="content" rows="4" required></textarea>
+            </div>
+            <button type="submit">Submit Comment</button>
+        </form>
+    </section>
+
+    <!-- Add this JavaScript at the end of the content block -->
+    <script>
+        function showReplyForm(formId) {
+            const form = document.getElementById(formId);
+            if (form.style.display === "none") {
+                form.style.display = "block";
+            } else {
+                form.style.display = "none";
+            }
+        }
+    </script>
 {% endblock %}

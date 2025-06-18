@@ -1,22 +1,43 @@
-# Virtual Environment
-.venv/
-venv/
-ENV/
-
 # Python
 __pycache__/
 *.py[cod]
+*$py.class
 *.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
 # Django
 *.log
 local_settings.py
 db.sqlite3
+db.sqlite3-journal
 media/
 
-# IDE
-.vscode/
-.idea/
+# Virtual Environment
+myenv/
+venv/
+ENV/
 
-# Add to .gitignore
-assets/
+# VS Code
+.vscode/
+
+# Environment variables
+.env
+
+# Static files
+staticfiles/
